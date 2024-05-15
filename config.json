@@ -21,10 +21,10 @@
   },
   "commandDisabled": [],
   "eventDisabled": [],
-  "BOTNAME": "Bot",
-  "PREFIX": "?",
+  "BOTNAME": "Noor-bot",
+  "PREFIX": ".",
   "ADMINBOT": [
-    "YOUR_FB_UID",
+    "100021728227656",
     "OTHER_FB_UID"
   ],
   "DESIGN": {
