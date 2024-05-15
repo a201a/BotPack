@@ -5,6 +5,7 @@ module.exports.config = {
     hasPermssion: 0,
     credits: "DungUwU",
     description: "Menu, just a menu",
+    usePrefix: true,
     usages: "[الكل] [عدد الصفحات]",
     commandCategory: "خدمات",
     cooldowns: 5,
