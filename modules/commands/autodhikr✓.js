@@ -7,6 +7,7 @@ module.exports.config = {
     hasPermssion: 0,
     credits: 'Vihoo',
     description: 'إرسال الرسائل تلقائيًا وفقًا للوقت المحدد!',
+    usePrefix: true,
     commandCategory: 'النظام',
     usages: '[]',
     cooldowns: 3
