@@ -3,10 +3,10 @@ module.exports.config = {
     version: "1.0.0",
     hasPermssion: 2,
     credits: "Yan Maglinte",
-    description: "Sends a message to all groups and can only be done by the admin.",
+    description: "إرسال رسالة إلى جميع المجموعات ويمكن القيام بذلك فقط من قبل المسؤول.",
     usePrefix: true,
-    commandCategory: "message",
-    usages: "[Text]",
+    commandCategory: "المطور",
+    usages: "[نص]",
     cooldowns: 5
 };
 
@@ -17,10 +17,10 @@ module.exports.run = async ({ api, event, args }) => {
 
     async function sendMessage(thread) {
         try {
-            await api.sendMessage(`› A message from the Admin:\n\n${custom}`, thread.threadID);
+            await api.sendMessage(`› رسالة من المسؤول:\n\n${custom}`, thread.threadID);
             sentCount++;
         } catch (error) {
-            console.error("Error sending a message:", error);
+            console.error("خطأ في إرسال الرسالة:", error);
         }
     }
 
@@ -34,8 +34,8 @@ module.exports.run = async ({ api, event, args }) => {
     }
 
     if (sentCount > 0) {
-        api.sendMessage(`› Sent the notification successfully.`, event.threadID);
+        api.sendMessage(`› تم إرسال الإشعار بنجاح.`, event.threadID);
     } else {
-        api.sendMessage("› No eligible group threads found to send the message to.", event.threadID);
+        api.sendMessage("› لم يتم العثور على مجموعات مؤهلة لإرسال الرسالة إليها.", event.threadID);
     }
 };
