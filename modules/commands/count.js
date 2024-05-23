@@ -3,10 +3,10 @@ module.exports.config = {
   version: "1.0.0",
   hasPermssion: 0,
   credits: "Blue & Yan Maglinte",
-  description: "Counts the number of words, paragraphs, and alphanumeric characters in a given input string.",
+  description: "يحسب عدد الكلمات والفقرات والأحرف الأبجدية الرقمية في سلسلة الإدخال المقدمة.",
   usePrefix: true,
-  commandCategory: "utilities",
-  usages: "count words, paragraphs, and alphanumerics [input]",
+  commandCategory: "الادوات",
+  usages: "count الكلمات، الفقرات، والأحرف الأبجدية الرقمية [الإدخال]",
   cooldowns: 5,
   dependencies: {}
 };
@@ -17,5 +17,5 @@ module.exports.run = function ({ api, event, args }) {
   const paragraphCount = (inputStr.match(/\n\n/g) || []).length + 1;
   const alphanumericCount = (inputStr.match(/[a-zA-Z0-9]/g) || []).length;
 
-  api.sendMessage(`❯ There are ${wordCount} word(s), ${paragraphCount} paragraph(s), and ${alphanumericCount} alphanumeric character(s) in your input.`, event.threadID);
+  api.sendMessage(`❯ يوجد ${wordCount} كلمة/كلمات، ${paragraphCount} فقرة/فقرات، و ${alphanumericCount} حرف/أحرف أبجدية رقمية في مدخلك.`, event.threadID);
 };
