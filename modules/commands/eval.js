@@ -5,7 +5,7 @@ module.exports.config = {
   credits: "Liane Cagara",
   description: "Execute codes quickly.",
   usePrefix: true,
-  commandCategory: "Admin",
+  commandCategory: "المطور",
   usages: "[reply or text]",
   cooldowns: 0,
   dependencies: {
