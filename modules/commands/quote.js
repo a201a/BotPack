@@ -5,9 +5,9 @@ module.exports.config = {
   version: "1.0.0",
   hasPermssion: 0,
   credits: "Yan Maglinte",
-  description: "Randomly receive quotes",
+  description: "احصل على اقتباسات عشوائية",
   usePrefix: true,
-  commandCategory: "notes",
+  commandCategory: "ملاحظات",
   usages: "quotes",
   cooldowns: 10,
 };
@@ -21,7 +21,7 @@ module.exports.run = async function({ api, event }) {
     const message = `"${content}" - ${author}`;
     api.sendMessage(message, event.threadID, event.messageID);
   } catch (error) {
-    console.error('Something went wrong:', error);
-    api.sendMessage('An error occurred while fetching from the API. Please try again.', event.threadID, event.messageID);
+    console.error('حدث خطأ ما:', error);
+    api.sendMessage('حدث خطأ أثناء جلب البيانات من API. الرجاء المحاولة مرة أخرى.', event.threadID, event.messageID);
   }
 };
