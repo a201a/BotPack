@@ -9,10 +9,10 @@ const config = {
      version: "1.0.0",
      hasPermssion: 0,
      credits: "Mirai Team & Yan Maglinte",
-     description: "Play music via YouTube link or search keyword",
+     description: "تشغيل الموسيقى عبر رابط YouTube أو البحث بالكلمات المفتاحية",
      usePrefix: true,
-     commandCategory: "Means",
-     usages: "[searchMusic]",
+     commandCategory: "الوسائل",
+     usages: "[البحث عن الموسيقى]",
      cooldowns: 0
 };
 
@@ -48,11 +48,11 @@ const handleReply = async ({ api, event, handleReply }) => {
          const path = `${__dirname}/cache/audio-${event.senderID}.mp3`;
          const { data, info } = await downloadMusicFromYoutube("https://www.youtube.com/watch?v=" + handleReply.link[event.body - 1], path);
 
-         if (fs.statSync(data).size > 26214400) return api.sendMessage('⚠️The file could not be sent because it is larger than 25MB.', event.threadID, () => fs.unlinkSync(path), event.messageID);
+         if (fs.statSync(data).size > 26214400) return api.sendMessage('⚠️ لا يمكن إرسال الملف لأنه أكبر من 25 ميجابايت.', event.threadID, () => fs.unlinkSync(path), event.messageID);
          api.unsendMessage(handleReply.messageID);
 
          const message = {
-             body: `❍━━━━━━━━━━━━❍\n🎵 Title: ${info.title}\n⏱️ Time: ${convertHMS(info.dur)}\n⏱️ Processing time: ${Math.floor((Date.now() - info.timestart) / 1000)} seconds\n❍━━━━━━━━━━━━❍`,
+             body: `❍━━━━━━━━━━━━❍\n🎵 العنوان: ${info.title}\n⏱️ المدة: ${convertHMS(info.dur)}\n⏱️ وقت المعالجة: ${Math.floor((Date.now() - info.timestart) / 1000)} ثواني\n❍━━━━━━━━━━━━❍`,
              attachment: fs.createReadStream(data),
          };
          return api.sendMessage(message, event.threadID, async () => {
@@ -64,7 +64,7 @@ const handleReply = async ({ api, event, handleReply }) => {
 };
 
 const run = async function ({ api, event, args }) {
-     if (!args?.length) return api.sendMessage('❯ Search cannot be empty!', event.threadID, event.messageID);
+     if (!args?.length) return api.sendMessage('❯ البحث لا يمكن أن يكون فارغاً!', event.threadID, event.messageID);
 
      const keywordSearch = args.join(" ");
      const path = `${__dirname}/cache/sing-${event.senderID}.mp3`;
@@ -72,10 +72,10 @@ const run = async function ({ api, event, args }) {
      if (args[0]?.startsWith("https://")) {
          try {
              const { data, info } = await downloadMusicFromYoutube(args[0], path);
-             const body = `❍━━━━━━━━━━━━❍\n🎵 Title: ${info.title}\n⏱️ Time: ${convertHMS(info.dur)}\n⏱️ Processing time: ${Math.floor((Date.now() - info.timestart) / 1000)} seconds\n❍━━━━━━━━━━━━❍`;
+             const body = `❍━━━━━━━━━━━━❍\n🎵 العنوان: ${info.title}\n⏱️ المدة: ${convertHMS(info.dur)}\n⏱️ وقت المعالجة: ${Math.floor((Date.now() - info.timestart) / 1000)} ثواني\n❍━━━━━━━━━━━━❍`;
 
              if (fs.statSync(data).size > 26214400) {
-                 return api.sendMessage('⚠️The file could not be sent because it is larger than 25MB.', event.threadID, () => fs.unlinkSync(data), event.messageID);
+                 return api.sendMessage('⚠️ لا يمكن إرسال الملف لأنه أكبر من 25 ميجابايت.', event.threadID, () => fs.unlinkSync(data), event.messageID);
              }
 
              return api.sendMessage({ body, attachment: fs.createReadStream(data) }, event.threadID, () => fs.unlinkSync(data), event.messageID);
@@ -96,7 +96,7 @@ const run = async function ({ api, event, args }) {
                  thumbnails.push(fs.createReadStream(thumbnailPath));
              }
 
-             const body = `There are ${link.length} results matching your search keyword:\n\n${data.map((value, index) => `❍━━━━━━━━━━━━❍\n${index + 1} - ${value?.title} (${value?.length?.simpleText})\n\n`).join('')}❯ Please reply and select one of the above searches`;
+             const body = `هناك ${link.length} نتائج تطابق كلمة البحث الخاصة بك:\n\n${data.map((value, index) => `❍━━━━━━━━━━━━❍\n${index + 1} - ${value?.title} (${value?.length?.simpleText})\n\n`).join('')}❯ يرجى الرد واختيار إحدى النتائج أعلاه`;
 
              return api.sendMessage({ attachment: thumbnails, body }, event.threadID, (error, info) => {
                  for (let i = 0; i < thumbnails.length; i++) {
@@ -112,7 +112,7 @@ const run = async function ({ api, event, args }) {
                  });
              }, event.messageID);
          } catch (e) {
-             return api.sendMessage(`⚠️An error occurred, please try again in a moment!!\n${e}`, event.threadID, event.messageID);
+             return api.sendMessage(`⚠️ حدث خطأ، يرجى المحاولة مرة أخرى بعد قليل!!\n${e}`, event.threadID, event.messageID);
          }
      }
 };
